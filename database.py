@@ -3,14 +3,6 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 from dotenv import load_dotenv
 
-""" .env:
-DB_USERNAME=
-DB_PASSWORD=
-DB_PORT=
-DB_NAME=
-DB_HOST=
- """
-
 load_dotenv()
 
 DB_USERNAME = os.getenv("DB_USERNAME")
