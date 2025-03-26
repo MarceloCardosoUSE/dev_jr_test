@@ -1,22 +1,41 @@
-# 🌤 **Desafio - Desenvolvedor Jr.**
-
-## 📌 Descrição
-Este projeto consiste na criação de uma API REST para buscar previsões do tempo de cidades utilizando uma API pública (OpenWeatherMap ou WeatherAPI) e armazená-las em um banco de dados. A API permite consultar dados históricos, filtrar previsões por cidade e data, além de excluir registros.
-
----
-
-## 🚀 Tecnologias Que Podem Ser Utilizadas
-- **Linguagem:** Python 3.x  
-- **Framework:** FastAPI ou Flask  
-- **Banco de Dados:** SQLite ou PostgreSQL  
-- **ORM:** SQLAlchemy  
-- **API Externa:** OpenWeatherMap ou WeatherAPI  
-- **Versionamento de Código:** Git  
+## 🚀 Tecnologias
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [OpenWeatherMap API](https://openweathermap.org/api)
 
 ---
 
-## 📖 Instruções
+## 📋 Instruções de Uso
 
-O candidato deverá desenvolver uma API REST que consulte previsões do tempo a partir de uma API pública (OpenWeatherMap ou WeatherAPI) e armazene os dados em um banco de dados.
+### 1️⃣ Instale os requisitos do projeto
+```bash
+pip install -r requirements.txt
+```
 
-Além disso, espera-se que o candidato implemente um fluxo ETL para garantir que os dados extraídos estejam organizados e acessíveis para outros times da empresa. O projeto pode incluir um WebHook para facilitar a automação do processo e integração com outras aplicações.
+### 2️⃣ Configure o ambiente
+Crie um arquivo `.env` na raiz do projeto seguindo o modelo abaixo:
+```env
+DB_USERNAME=
+DB_PASSWORD=
+DB_PORT=
+DB_NAME=
+DB_HOST=
+```
+
+### 3️⃣ Execute o projeto
+Inicie a aplicação em ambiente de desenvolvimento com:
+```bash
+fastapi dev main.py
+```
+
+A API estará disponível em `http://127.0.0.1:8000`.
+
+---
+
+## 📌 Considerações
+- Os dados recebidos são previsões de até **5 dias** à frente, pois essa é a única opção disponível no plano gratuito da API.
+- Foram escolhidos apenas os seguintes dados para retorno: **nome da cidade, temperatura, descrição e data**. A API retorna mais informações, mas essas foram selecionadas para otimizar a usabilidade.
+- A rota `POST` possui uma verificação para impedir a **duplicidade de dados**.
+- A rota `GET` foi consolidada para permitir consulta tanto com quanto sem parâmetros.
+- Os **IDs** gerados para os dados são do tipo **UUID**, garantindo unicidade.
+- O **appid** está na main para maior facilidade, mas, idealmente, em um ambiente de trabalho, deveria ser posto juntamente às outras variáveis de ambiente no `.env`
